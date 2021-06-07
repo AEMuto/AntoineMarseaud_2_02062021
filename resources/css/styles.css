@@ -3,15 +3,16 @@
   margin: 0;
   border: 1px solid black;
   font-family: 'Raleway', sans-serif;
+  font-size: 16px;
 }
 
 :root {
   
   /* Déclaration des variables pour la marge interne */
-  
-  --padding-desktop: calc((100vw - (100vw - 100px)) / 2);
-  --padding-tablet: calc((100vw - (100vw - 70px)) / 2);
-  --padding-modile: calc((100vw - (100vw - 40px)) / 2);
+  --padding-desktop: calc(35 * (1px - ((100vw - 1200px) / 240)) + 50 * ((100vw - 1200px) / 240));
+  /*--padding-desktop: clamp(35px, 35px * (1 - ((100vw - 1200px) / 240px)) + 50px * ((100vw - 1200px) / 240), (100vw - 1340px) / 2);
+  */--padding-tablet: 35px;
+  --padding-mobile: 20px;
   
   /* Déclaration des variables pour le thème */
   
@@ -24,22 +25,18 @@
 }
 
 /* General Rules */
-
 nav,
 header,
 .lodging,
 .activities,
 footer {
-  padding: 0 var(--padding-desktop);
+    padding: 0 var(--padding-desktop);
 }
-
-/* Desktop Rules */
 
 nav {
   min-height: 195px;
   background-color: teal;
 }
-
 
 header {
   min-height: 195px;
@@ -56,11 +53,33 @@ header {
 .lodging__popular {
   background-color: var(--color-primary);
   flex: 2;
+  padding: 40px;
 }
+.popular__wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.popular__card {
+  width: 340px;
+  height: 144px;
+}
+
 .lodging__main {
   background-color: var(--color-secondary);
   flex: 5;
   margin-right: 40px;
+  padding: 40px;
+}
+.lodging__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.lodging__card {
+  width: 246px;
+  height: 200px;
 }
 
 .activities {
@@ -73,14 +92,49 @@ footer {
   background-color: burlywood;
 }
 
-/* Mobile Breakpoint & Rules*/
-@media only screen and (max-width: 760px) {
-  #lodging {
+
+/* Tablet Breakpoints & Rules */
+@media only screen and (max-width: 1200px){
+  /*Tablets [601px -> 1200px]*/
+  nav,
+  header,
+  .lodging,
+  .activities,
+  footer {
+    padding: 0 var(--padding-tablet);
+  }
+
+  .lodging {
     flex-direction: column;
+  }
+  .lodging__popular {
+    flex: 2;
+  }
+  .lodging__main {
+    flex: 5;
+    margin-right: 0;
   }
 }
 
-/* Tablet Breakpoint & Rules */
-@media only screen and (max-width: 1030px) {
+/* Mobile Breakpoint & Rules*/
+@media only screen and (max-width: 600px){
+/*Smartphones [325pxpx -> 600px]*/
+  nav,
+  header,
+  .lodging,
+  .activities,
+  footer {
+    padding: 0 var(--padding-mobile);
+  }
 
+  .lodging {
+    flex-direction: column;
+  }
+  .lodging__popular {
+    flex: 2;
+  }
+  .lodging__main {
+    flex: 5;
+    margin-right: 0;
+  }
 }
