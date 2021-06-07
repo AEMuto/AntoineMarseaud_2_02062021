@@ -1,0 +1,86 @@
+* {
+  padding: 0;
+  margin: 0;
+  border: 1px solid black;
+  font-family: 'Raleway', sans-serif;
+}
+
+:root {
+  
+  /* Déclaration des variables pour la marge interne */
+  
+  --padding-desktop: calc((100vw - (100vw - 100px)) / 2);
+  --padding-tablet: calc((100vw - (100vw - 70px)) / 2);
+  --padding-modile: calc((100vw - (100vw - 40px)) / 2);
+  
+  /* Déclaration des variables pour le thème */
+  
+  --color-primary: #0065FC;
+  --color-secondary: #DEEBFF;
+  --color-background: #F2F2F2;
+  --color-border: #E3E3E3;
+  color: #000000;
+  background-color: #FFFFFF;
+}
+
+/* General Rules */
+
+nav,
+header,
+.lodging,
+.activities,
+footer {
+  padding: 0 var(--padding-desktop);
+}
+
+/* Desktop Rules */
+
+nav {
+  min-height: 195px;
+  background-color: teal;
+}
+
+
+header {
+  min-height: 195px;
+  background-color: cornflowerblue;
+}
+
+.lodging {
+  min-height: 626px;
+  background-color: coral;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.lodging__popular {
+  background-color: var(--color-primary);
+  flex: 2;
+}
+.lodging__main {
+  background-color: var(--color-secondary);
+  flex: 5;
+  margin-right: 40px;
+}
+
+.activities {
+  min-height: 494px;
+  background-color: lightpink;
+}
+
+footer {
+  min-height: 218px;
+  background-color: burlywood;
+}
+
+/* Mobile Breakpoint & Rules*/
+@media only screen and (max-width: 760px) {
+  #lodging {
+    flex-direction: column;
+  }
+}
+
+/* Tablet Breakpoint & Rules */
+@media only screen and (max-width: 1030px) {
+
+}
