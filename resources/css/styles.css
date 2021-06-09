@@ -1,3 +1,7 @@
+/* FEUILLE DE STYLE */
+/* PROJET  RESERVIA */
+
+/* Reset des marges & visualisations des blocks */
 * {
   padding: 0;
   margin: 0;
@@ -7,16 +11,19 @@
   color: #000000;
 }
 
+/* Décalaration des variables globales */
 :root {
   
-  /* Déclaration des variables pour la marge interne */
+  /* Obtenir des marges fluides par interpolation entre 2 intervalles */
+  /* En mode tablette (<1200px) je veux un padding de 35px 
+  /* En desktop je veux un padding de 50px (<= 1440px) 
+  /* Ici 240 correspond à 1440-1200 */
   --padding-desktop: calc(35 * (1px - ((100vw - 1200px) / 240)) + 50 * ((100vw - 1200px) / 240));
-  /*--padding-desktop: clamp(35px, 35px * (1 - ((100vw - 1200px) / 240px)) + 50px * ((100vw - 1200px) / 240), (100vw - 1340px) / 2);
-  */--padding-tablet: 35px;
+  /*--padding-desktop: clamp(35px, 35px * (1 - ((100vw - 1200px) / 240px)) + 50px * ((100vw - 1200px) / 240), (100vw - 1340px) / 2);*/
+  --padding-tablet: 35px;
   --padding-mobile: 20px;
   
-  /* Déclaration des variables pour le thème */
-  
+  /* Variables couleurs pour le thème */
   --color-primary: #0065FC;
   --color-secondary: #DEEBFF;
   --color-background: #F2F2F2;
@@ -34,6 +41,7 @@ footer {
     padding: 0 var(--padding-desktop);
 }
 
+/* 1. Barre de Navigation --------------------------------------------------- */
 nav {
   min-height: 116px;
   background-color: antiquewhite;
@@ -62,11 +70,13 @@ nav {
   font-weight: 600;
 }
 
+/* 2. Header ---------------------------------------------------------------- */
 header {
   min-height: 310px;
   background-color: cornflowerblue;
 }
 
+/* 3. Section Hébergement --------------------------------------------------- */
 .lodging {
   min-height: 626px;
   background-color: coral;
@@ -74,6 +84,7 @@ header {
   flex-direction: row-reverse;
 }
 
+  /* 3.1 Aside Hébergements Populaires -------------------------------------- */
 .lodging__popular {
   background-color: var(--color-primary);
   flex: 2;
@@ -90,6 +101,7 @@ header {
   height: 144px;
 }
 
+  /* 3.2 Div Hébergements Normaux ------------------------------------------- */
 .lodging__main {
   background-color: var(--color-secondary);
   flex: 5;
@@ -106,20 +118,24 @@ header {
   height: 200px;
 }
 
+/* 4. Section Activités ----------------------------------------------------- */
 .activities {
   min-height: 494px;
   background-color: lightpink;
 }
 
+/* 5. Footer ---------------------------------------------------------------- */
 footer {
   min-height: 218px;
   background-color: burlywood;
 }
 
 
-/* Tablet Breakpoints & Rules */
+/* Tablet Breakpoints & Rules ----------------------------------------------- */
 @media only screen and (max-width: 1200px){
   /*Tablets [769px -> 1200px]*/
+
+  /* General Rules */
   nav,
   header,
   .lodging,
@@ -128,6 +144,7 @@ footer {
     padding: 0 var(--padding-tablet);
   }
 
+  /* Lodging Rules */
   .lodging {
     flex-direction: column;
   }
@@ -140,9 +157,11 @@ footer {
   }
 }
 
-/* Mobile Breakpoint & Rules*/
+/* Mobile Breakpoint & Rules ------------------------------------------------ */
 @media only screen and (max-width: 768px){
-/*Smartphones [0px -> 768px]*/
+  /*Smartphones [0px -> 768px]*/
+
+  /* General Rules */
   nav,
   header,
   .lodging,
@@ -151,6 +170,7 @@ footer {
     padding: 0 var(--padding-mobile);
   }
 
+  /* Nav Rules */
   nav {
     min-height: 132px;
     background-color: antiquewhite;
@@ -182,7 +202,7 @@ footer {
     top: -90px;
   }
 
-
+  /* Lodging Rules */
   .lodging {
     flex-direction: column;
   }
