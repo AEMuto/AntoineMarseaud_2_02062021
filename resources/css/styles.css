@@ -16,13 +16,11 @@
 :root {
   
   /* Obtenir des marges fluides par interpolation entre 2 intervalles
-  /* En mode tablette (<1200px) je veux un padding de 35px 
-  /* En desktop je veux un padding de 50px (<= 1440px) 
-  /* Ici 240 correspond à 1440-1200 */
-  --padding-desktop: calc(35 * (1px - ((100vw - 1200px) / 240)) + 50 * ((100vw - 1200px) / 240));
-  /*--padding-desktop: clamp(35px, 35px * (1 - ((100vw - 1200px) / 240px)) + 50px * ((100vw - 1200px) / 240), (100vw - 1340px) / 2);*/
-  --padding-tablet: 35px;
-  --padding-mobile: 20px;
+  /* Intervalle 1 : selon la largeur des maquettes - 375px, 1440px
+  /* Intervalle 2 : le padding gauche & droit de la page pour les valeurs
+  /* précédentes - 20px, 50px
+  /* Ici 1065 correspond à 1440-375 */
+  --padding-page: calc(20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065));
   
   /* Variables couleurs pour le thème */
   --color-primary: #0065FC;
@@ -39,7 +37,7 @@
 .lodging,
 .activities,
 .footer {
-    padding: 0 var(--padding-desktop);
+    padding: 0 var(--padding-page);
 }
 
 h1, h2 {
@@ -192,15 +190,6 @@ h3, button, input, label {
 @media only screen and (max-width: 1200px){
   /*Tablets [769px -> 1200px]*/
 
-  /* General Rules */
-  .nav,
-  .header,
-  .lodging,
-  .activities,
-  .footer {
-    padding: 0 var(--padding-tablet);
-  }
-
   /* Lodging Rules */
   .lodging {
     flex-direction: column;
@@ -217,15 +206,6 @@ h3, button, input, label {
 /* Mobile Breakpoint & Rules ------------------------------------------------ */
 @media only screen and (max-width: 768px){
   /*Smartphones [0px -> 768px]*/
-
-  /* General Rules */
-  .nav,
-  .header,
-  .lodging,
-  .activities,
-  .footer {
-    padding: 0 var(--padding-mobile);
-  }
 
   /* Nav Rules */
   .nav {
