@@ -21,6 +21,7 @@
   /* précédentes - 20px, 50px
   /* Ici 1065 correspond à 1440-375 */
   --padding-page: calc(20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065));
+  --searchbar-width: calc(335 * (1px - ((100vw - 375px) / 1065)) + 420 * ((100vw - 375px) / 1065));
   
   /* Variables couleurs pour le thème */
   --color-primary: #0065FC;
@@ -45,7 +46,7 @@ h1, h2 {
   font-weight: 800;
 }
 
-h3, button, input, label {
+h3, button, input, label span {
   font-size: 1.125em;
   font-weight: 700;
 }
@@ -97,6 +98,7 @@ h3, button, input, label {
   height: 51px;
   display: flex;
   margin-bottom: 31px;
+  width: var(--searchbar-width);
 }
 
 .searchbar__item {
@@ -104,7 +106,7 @@ h3, button, input, label {
   align-items: center;
 }
 
-.searchbar__item--icon {
+.searchbar__item--marker-icon {
   font-size: 1.25em;
   padding: 0 20px;
   border-radius: 15px 0 0 15px;
@@ -113,13 +115,21 @@ h3, button, input, label {
 
 .searchbar__item--input {
   padding-left: 18px;
+  width: 100%;
 }
 
 .searchbar__item--label {
   padding: 0 17px;
   border-radius: 0 15px 15px 0;
   background-color: var(--color-primary);
+}
+
+.searchbar__item--label-text {
   color: #FFFFFF;
+}
+
+.searchbar__item--label-search-icon {
+  display: none;
 }
 
 .filter {
@@ -237,6 +247,20 @@ h3, button, input, label {
     position: absolute;
     right: 40px;
     top: -90px;
+  }
+
+  /* Header Rules */
+  .searchbar {
+    width: min(var(--searchbar-width), 100%);
+  }
+
+  .searchbar__item--label-text {
+    display: none;
+  }
+  
+  .searchbar__item--label-search-icon {
+    display: inline;
+    color: #FFFFFF;
   }
 
   /* Lodging Rules */

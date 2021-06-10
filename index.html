@@ -30,9 +30,12 @@
     <p class="header__subtitle">En plein centre ville ou en pleine nature</p>
     <!-- Barre de recherche -->
     <div class="searchbar">
-      <i     class="searchbar__item searchbar__item--icon fas fa-map-marker-alt"></i> 
+      <i     class="searchbar__item searchbar__item--marker-icon fas fa-map-marker-alt"></i> 
       <input class="searchbar__item searchbar__item--input" type="search" id="searchbar" name="searchbar" placeholder="Marseille, France">
-      <label class="searchbar__item searchbar__item--label" for="searchbar">Rechercher</label>
+      <label class="searchbar__item searchbar__item--label" for="searchbar">
+        <span class="searchbar__item--label-text">Rechercher</span>
+        <i class="searchbar__item--label-search-icon fas fa-search"></i>
+      </label>
     </div>
     <!-- Filtres -->
     <div class="filter">
