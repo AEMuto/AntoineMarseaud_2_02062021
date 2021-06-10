@@ -8,13 +8,14 @@
   border: 1px solid black;
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
+  font-weight: 600;
   color: #000000;
 }
 
 /* Décalaration des variables globales */
 :root {
   
-  /* Obtenir des marges fluides par interpolation entre 2 intervalles */
+  /* Obtenir des marges fluides par interpolation entre 2 intervalles
   /* En mode tablette (<1200px) je veux un padding de 35px 
   /* En desktop je veux un padding de 50px (<= 1440px) 
   /* Ici 240 correspond à 1440-1200 */
@@ -33,29 +34,39 @@
 }
 
 /* General Rules */
-nav,
-header,
+.nav,
+.header,
 .lodging,
 .activities,
-footer {
+.footer {
     padding: 0 var(--padding-desktop);
 }
 
+h1, h2 {
+  font-size: 1.375em;
+  font-weight: 800;
+}
+
+h3, button, input, label {
+  font-size: 1.125em;
+  font-weight: 700;
+}
+
 /* 1. Barre de Navigation --------------------------------------------------- */
-nav {
+.nav {
   min-height: 116px;
   background-color: antiquewhite;
   display: flex;
   justify-content: space-between;
 }
 
-.nav__wrapper {
+.menu {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.nav__link {
+.menu__link {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -64,17 +75,63 @@ nav {
   text-decoration: none;
 }
 
-.nav__subscribe {
+.menu__link--subscribe {
   min-width: clamp(111px, 100vw * (7.71 / 100), 150px);
   color: var(--color-primary);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* 2. Header ---------------------------------------------------------------- */
-header {
+.header {
   min-height: 310px;
   background-color: cornflowerblue;
 }
+
+.header__title {
+  margin-bottom: 10px;
+}
+
+.header__subtitle {
+  margin-bottom: 20px;
+}
+
+.searchbar {
+  height: 51px;
+  display: flex;
+  margin-bottom: 31px;
+}
+
+.searchbar__item {
+  display: flex;
+  align-items: center;
+}
+
+.searchbar__item--icon {
+  font-size: 1.25em;
+  padding: 0 20px;
+  border-radius: 15px 0 0 15px;
+  background-color: var(--color-background);
+}
+
+.searchbar__item--input {
+  padding-left: 18px;
+}
+
+.searchbar__item--label {
+  padding: 0 17px;
+  border-radius: 0 15px 15px 0;
+  background-color: var(--color-primary);
+  color: #FFFFFF;
+}
+
+.filter {
+  height: 50px;
+  margin-bottom: 35px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 
 /* 3. Section Hébergement --------------------------------------------------- */
 .lodging {
@@ -85,35 +142,35 @@ header {
 }
 
   /* 3.1 Aside Hébergements Populaires -------------------------------------- */
-.lodging__popular {
+.lodging-popular {
   background-color: var(--color-primary);
   flex: 2;
   padding: 40px;
 }
-.popular__wrapper {
+.lodging-popular__wrapper {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
 }
-.popular__card {
+.card--lodging-popular {
   width: 340px;
   height: 144px;
 }
 
   /* 3.2 Div Hébergements Normaux ------------------------------------------- */
-.lodging__main {
+.lodging-main {
   background-color: var(--color-secondary);
   flex: 5;
   margin-right: 40px;
   padding: 40px;
 }
-.lodging__wrapper {
+.lodging-main__wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.lodging__card {
+.card--lodging-main {
   width: 246px;
   height: 200px;
 }
@@ -125,7 +182,7 @@ header {
 }
 
 /* 5. Footer ---------------------------------------------------------------- */
-footer {
+.footer {
   min-height: 218px;
   background-color: burlywood;
 }
@@ -136,11 +193,11 @@ footer {
   /*Tablets [769px -> 1200px]*/
 
   /* General Rules */
-  nav,
-  header,
+  .nav,
+  .header,
   .lodging,
   .activities,
-  footer {
+  .footer {
     padding: 0 var(--padding-tablet);
   }
 
@@ -162,23 +219,23 @@ footer {
   /*Smartphones [0px -> 768px]*/
 
   /* General Rules */
-  nav,
-  header,
+  .nav,
+  .header,
   .lodging,
   .activities,
-  footer {
+  .footer {
     padding: 0 var(--padding-mobile);
   }
 
   /* Nav Rules */
-  nav {
+  .nav {
     min-height: 132px;
     background-color: antiquewhite;
     display: block;
     position: relative;
   }
   
-  .nav__wrapper {
+  .menu {
     height: 42px;
     justify-content: flex-start;
     flex-wrap: nowrap;
@@ -189,16 +246,16 @@ footer {
     bottom: 0px;
   }
   
-  .nav__link {
+  .menu__link {
     height: 42px;
     min-width: 50%;
   }
   
-  .nav__subscribe {
+  .menu__link--subscribe {
     min-width: 0;
     min-height: 90px;
     position: absolute;
-    right: 20px;
+    right: 40px;
     top: -90px;
   }
 
@@ -206,10 +263,10 @@ footer {
   .lodging {
     flex-direction: column;
   }
-  .lodging__popular {
+  .lodging-popular {
     flex: 2;
   }
-  .lodging__main {
+  .lodging-main {
     flex: 5;
     margin-right: 0;
   }

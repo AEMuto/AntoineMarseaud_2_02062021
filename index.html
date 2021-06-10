@@ -5,67 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link href="./resources/css/styles.css" type="text/css" rel="stylesheet">
   <script src="https://kit.fontawesome.com/526c6b558a.js" crossorigin="anonymous"></script>
   <title>Reservia</title>
 </head>
-<body>
-  <nav>
-    <img src="/resources/images/logo/Reservia.svg" alt="logo" class="nav__logo">
-    <div class="nav__wrapper">
-      <a class="nav__link" href="#">Hébergements</a>
-      <a class="nav__link" href="#">Activités</a>
-      <a class="nav__link nav__subscribe" href="#">S'inscrire</a>
+<body class="page">
+
+  <!-- Navigation -->
+
+  <nav class="nav">
+    <img class="nav__logo" src="/resources/images/logo/Reservia.svg" alt="logo">
+    <div class="menu">
+      <a class="menu__link menu__link--active" href="#">Hébergements</a>
+      <a class="menu__link" href="#">Activités</a>
+      <a class="menu__link menu__link--subscribe" href="#">S'inscrire</a>
     </div>
   </nav>
-  <header>
-    <h1 class="header__title"></h1>
-    <p class="header__subtitle"></p>
-    <input type="search" class="header__search">
-    <div class="header__filter">
-      <h3 class="filter__title"></h3>
-      <button class="filter__button"></button>
-      <button class="filter__button"></button>
-      <button class="filter__button"></button>
-      <button class="filter__button"></button>
+
+  <!-- Header -->
+
+  <header class="header">
+    <h1 class="header__title">Trouvez votre hébergement pour des vacances de rêve</h1>
+    <p class="header__subtitle">En plein centre ville ou en pleine nature</p>
+    <!-- Barre de recherche -->
+    <div class="searchbar">
+      <i     class="searchbar__item searchbar__item--icon fas fa-map-marker-alt"></i> 
+      <input class="searchbar__item searchbar__item--input" type="search" id="searchbar" name="searchbar" placeholder="Marseille, France">
+      <label class="searchbar__item searchbar__item--label" for="searchbar">Rechercher</label>
     </div>
-    <p class="header__info"></p>
+    <!-- Filtres -->
+    <div class="filter">
+      <h3     class="filter__title">Filtres</h3>
+      <button class="filter__button"><i class="fas fa-money-bill-wave"></i>Économique</button>
+      <button class="filter__button"><i class="fas fa-child"></i>Familial</button>
+      <button class="filter__button"><i class="fas fa-heart"></i>Romantique</button>
+      <button class="filter__button"><i class="fas fa-dog"></i>Animaux autorisés</button>
+    </div>
+    <!-- Hebergements -->
+    <p class="info">
+      <i class="info__icon fas fa-info"></i>
+      Plus de 500 logements sont disponibles dans cette ville
+    </p>
   </header>
+
+  <!-- Hebergements -->
   <section class="lodging">
-    <aside class="lodging__popular">
-      <h1 class="popular__title"></h1>
-      <div class="popular__wrapper">
-        <div class="popular__card"></div>
-        <div class="popular__card"></div>
-        <div class="popular__card"></div>
+    <aside class="lodging-popular">
+      <h1 class="lodging-popular__title"></h1>
+      <div class="lodging-popular__wrapper">
+        <div class="card card--lodging-popular"></div>
+        <div class="card card--lodging-popular"></div>
+        <div class="card card--lodging-popular"></div>
       </div>
     </aside>
-    <div class="lodging__main">
-      <h1 class="lodging__title"></h1>
-      <div class="lodging__wrapper">
-        <div class="lodging__card"></div>
-        <div class="lodging__card"></div>
-        <div class="lodging__card"></div>
-        <div class="lodging__card"></div>
-        <div class="lodging__card"></div>
-        <div class="lodging__card"></div>
+    <div class="lodging-main">
+      <h1 class="lodging-main__title"></h1>
+      <div class="lodging-main__wrapper">
+        <div class="card card--lodging-main"></div>
+        <div class="card card--lodging-main"></div>
+        <div class="card card--lodging-main"></div>
+        <div class="card card--lodging-main"></div>
+        <div class="card card--lodging-main"></div>
+        <div class="card card--lodging-main"></div>
       </div>
-      <h3 class="lodging__more"></h3>
+      <h3 class="lodging-main__more"></h3>
     </div>
   </section>
   <section class="activities">
     <h2 class="activities__title"></h2>
     <div class="activities__wrapper">
-      <div class="activities__card"></div>
-      <div class="activities__card"></div>
-      <div class="activities__card"></div>
-      <div class="activities__card"></div>
-      <div class="activities__card"></div>
-      <div class="activities__card"></div>
+      <div class="card card--activities"></div>
+      <div class="card card--activities"></div>
+      <div class="card card--activities"></div>
+      <div class="card card--activities"></div>
+      <div class="card card--activities"></div>
+      <div class="card card--activities"></div>
     </div>
   </section>
-  <footer>
+  <footer class="footer">
     <div class="footer__item">
       <h3 class="footer__title"></h3>
       <a class="footer__link"></a>
