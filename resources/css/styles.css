@@ -1,7 +1,7 @@
 /* FEUILLE DE STYLE */
 /* PROJET  RESERVIA */
 
-/* Reset des marges & visualisations des blocks */
+/* Reset des marges & visualisations des blocs */
 * {
   padding: 0;
   margin: 0;
@@ -15,14 +15,22 @@
 /* Décalaration des variables globales */
 :root {
   
-  /* Obtenir des marges fluides par interpolation entre 2 intervalles
-  /* Intervalle 1 : selon la largeur des maquettes - 375px, 1440px
-  /* Intervalle 2 : le padding gauche & droit de la page pour les valeurs
-  /* précédentes - 20px, 50px
-  /* Ici 1065 correspond à 1440-375 */
+  /* Obtenir des marges fluides par interpolation entre 2 intervalles connus, exemple:
+  /* Intervalle 1: selon la largeur des maquettes - 375px, 1440px
+  /* Intervalle 2: le padding gauche & droit de la page - 20px, 50px
+  /* 1065 correspond à 1440-375 */
+
   --padding-page: calc(20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065));
+
   --searchbar-width: calc(335 * (1px - ((100vw - 375px) / 1065)) + 420 * ((100vw - 375px) / 1065));
-  
+  /* Pour un élément comme la searchbar on sait également que sa width est
+  /* de 100% en mode mobile. Aussi dans le @media mobile on pourra ajouter:
+  /* width: min(var(--searchbar-width), 100%);
+  /* Ainsi lorsque --searchbar-width est plus grand que 100% de la width de son parent
+  /* min() sélectionnera la valeur 100% ce qui évitera un overflow.
+  /* Pour obtenir la valeur en vw d'un element défini en px tout en connaissant la width du viewport
+  /* ELEMvw = calc(100 * ELEMpx / viewport width)
+
   /* Variables couleurs pour le thème */
   --color-primary: #0065FC;
   --color-secondary: #DEEBFF;
