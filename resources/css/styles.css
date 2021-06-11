@@ -29,8 +29,9 @@
   /* Ainsi lorsque --searchbar-width est plus grand que 100% de la width de son parent
   /* min() sélectionnera la valeur 100% ce qui évitera un overflow.
   /* Pour obtenir la valeur en vw d'un element défini en px tout en connaissant la width du viewport
-  /* ELEMvw = calc(100 * ELEMpx / viewport width)
-
+  /* ELEMvw = calc(100 * ELEMpx / viewport width) */
+  --card-width: calc(325 * (1px - ((100vw - 375px) / 1065)) + 236 * ((100vw - 375px) / 1065));
+  --card-height: 189px;
   /* Variables couleurs pour le thème */
   --color-primary: #0065FC;
   --color-secondary: #DEEBFF;
@@ -57,6 +58,20 @@ h1, h2 {
 h3, button, input, label span {
   font-size: 1.125em;
   font-weight: 700;
+}
+
+.card {
+  display: flex;
+  border-radius: 15px;
+  border: 5px solid white;
+  background-color: white;
+  overflow: hidden;
+  box-shadow: 0px 5px 15px var(--color-border);
+}
+
+/* A supprimer pour prod */
+source {
+  display: none;
 }
 
 /* Override des règles Font Awesome injecté via le script js */
@@ -212,40 +227,84 @@ i.fas--info {
   background-color: coral;
   display: flex;
   flex-direction: row-reverse;
+  justify-content: space-between
 }
 
   /* 3.1 Aside Hébergements Populaires -------------------------------------- */
 .lodging-popular {
   background-color: var(--color-background);
-  flex: 2;
-  padding: 40px;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
 }
 .lodging-popular__wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   height: 100%;
 }
 .card--lodging-popular {
-  width: 340px;
-  height: 144px;
+  width: 333px;
+  height: 134px;
 }
 
   /* 3.2 Div Hébergements Normaux ------------------------------------------- */
 .lodging-main {
-  background-color: var(--color-secondary);
-  flex: 5;
+  background-color: var(--color-background);
+  display: flex;
+  flex-direction: column;
+  border-radius: 25px;
+  padding: 30px 30px 0 40px;
   margin-right: 40px;
-  padding: 40px;
 }
+
+.lodging-main__title {
+  margin-bottom: 17px;
+}
+
 .lodging-main__wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  margin-right: -30px;
+
 }
 .card--lodging-main {
-  width: 246px;
-  height: 200px;
+  /* width: 236px;
+  height: 189px; */
+  max-width: var(--card-width);
+  max-height: var(--card-height);
+  flex-direction: column;
+  margin: 0 25px 30px 0;
+}
+
+.card__img-wrapper {
+  overflow: hidden;
+}
+.card__img {
+  width: 100%;
+  height: 114px;
+  object-fit: cover;
+}
+
+.card__text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.card__title {
+  font-size: 1em;
+}
+.card__rating {
+  display: inline-flex;
+  list-style: none;
+}
+i.fas--card {
+  font-size: 0.8em;
+  color: var(--color-primary);
+}
+
+.lodging-main__more {
+  margin: auto 0 45px 0;
 }
 
 /* 4. Section Activités ----------------------------------------------------- */
@@ -265,17 +324,6 @@ i.fas--info {
 @media only screen and (max-width: 1200px){
   /*Tablets [769px -> 1200px]*/
 
-  /* Lodging Rules */
-  .lodging {
-    flex-direction: column;
-  }
-  .lodging__popular {
-    flex: 2;
-  }
-  .lodging__main {
-    flex: 5;
-    margin-right: 0;
-  }
 }
 
 /* Mobile Breakpoint & Rules ------------------------------------------------ */
@@ -351,7 +399,7 @@ i.fas--info {
   }
 
   /* Lodging Rules */
-  .lodging {
+  /* .lodging {
     flex-direction: column;
   }
   .lodging-popular {
@@ -360,5 +408,5 @@ i.fas--info {
   .lodging-main {
     flex: 5;
     margin-right: 0;
-  }
+  } */
 }
