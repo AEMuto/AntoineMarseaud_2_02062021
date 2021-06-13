@@ -15,12 +15,12 @@
   <!-- Navigation -->
 
   <nav class="nav">
-    <img class="nav__logo" src="/resources/images/logo/Reservia.svg" alt="logo">
-    <div class="menu">
-      <a class="menu__link menu__link--active" href="#">Hébergements</a>
-      <a class="menu__link" href="#">Activités</a>
-      <a class="menu__link menu__link--subscribe" href="#">S'inscrire</a>
-    </div>
+    <ul class="menu">
+      <li class="menu__item menu__item--logo"><img src="/resources/images/logo/Reservia.svg" alt="logo"></li>
+      <li class="menu__item menu__item--link"><a href="#">Hébergements</a></li>
+      <li class="menu__item menu__item--link"><a href="#">Activités</a></li>
+      <li class="menu__item menu__item--link-subscribe"><a href="#">S'inscrire</a></li>
+    </ul>
   </nav>
 
   <!-- Header -->
@@ -58,15 +58,33 @@
   <section class="lodging">
     <aside class="lodging-popular">
       <h1 class="lodging-popular__title">Les plus populaires</h1>
-      <div class="lodging-popular__wrapper">
-        <div class="card card--lodging-popular"></div>
+      <div class="lodging-popular__container">
+        <div class="card card--lodging-popular">
+          <picture class="card__img-wrapper">
+            <source media="(min-width: 1920px)" srcset="./resources/images/hebergements/xlarge/marcus-loke.jpg">
+            <source media="(min-width: 1440px)" srcset="./resources/images/hebergements/large/marcus-loke.jpg">
+            <source media="(min-width: 768px)" srcset="./resources/images/hebergements/medium/marcus-loke.jpg">
+            <img class="card__img" src="./resources/images/hebergements/small/marcus-loke.jpg" alt="Photo de chambre d'hôtel" />
+          </picture>
+          <div class="card__text">
+            <h3 class="card__title">Auberge  la Cannebière</h3>
+            <p class="card__info">Nuit à partir de <span class="card__price">25€</span></p>
+            <ul class="card__rating">
+              <li><i class="fas fas--card fa-star"></i></li>
+              <li><i class="fas fas--card fa-star"></i></li>
+              <li><i class="fas fas--card fa-star"></i></li>
+              <li><i class="fas fas--card fa-star"></i></li>
+              <li><i class="fas fas--card fa-star"></i></li>
+            </ul>
+          </div>
+        </div>
         <div class="card card--lodging-popular"></div>
         <div class="card card--lodging-popular"></div>
       </div>
     </aside>
     <div class="lodging-main">
       <h1 class="lodging-main__title">Hébergements à Marseille</h1>
-      <div class="lodging-main__wrapper">
+      <div class="lodging-main__container">
         <div class="card card--lodging-main">
           <picture class="card__img-wrapper">
             <source media="(min-width: 1920px)" srcset="./resources/images/hebergements/xlarge/marcus-loke.jpg">
