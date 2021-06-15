@@ -1,21 +1,19 @@
-/* Décalaration des variables globales */
+/* Variables globales */
+
 :root {
+  --padding-page: calc(20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065));
   /* Obtenir des marges fluides par interpolation entre 2 intervalles connus, exemple:
   /* Intervalle 1: selon la largeur des maquettes - 375px, 1440px
   /* Intervalle 2: le padding gauche & droit de la page - 20px, 50px
   /* 1065 correspond à 1440-375 */
-  --padding-page: calc(20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065));
+
   --searchbar-width: calc(335 * (1px - ((100vw - 375px) / 1065)) + 420 * ((100vw - 375px) / 1065));
   /* Pour un élément comme la searchbar on sait également que sa width est
   /* de 100% en mode mobile. Aussi dans le @media mobile on pourra ajouter:
   /* width: min(var(--searchbar-width), 100%);
   /* Ainsi lorsque --searchbar-width est plus grand que 100% de la width de son parent
-  /* min() sélectionnera la valeur 100% ce qui évitera un overflow.
-  /* Pour obtenir la valeur en vw d'un element défini en px tout en connaissant la width du viewport
-  /* ELEMvw = calc(100 * ELEMpx / viewport width) */
-  --card-width: calc(325 * (1px - ((100vw - 375px) / 1065)) + 236 * ((100vw - 375px) / 1065));
-  --card-height: 200px;
-  /* Variables couleurs pour le thème */
+  /* min() sélectionnera la valeur 100% ce qui évitera un overflow. */
+
   --color-primary: #0065FC;
   --color-secondary: #DEEBFF;
   --color-background: #F2F2F2;
@@ -24,9 +22,10 @@
   background-color: #FFFFFF;
 }
 
+/* Règles Générales */
+
 html {
   box-sizing: border-box;
-  /* Reset des marges & visualisations des blocs */
   font-family: 'Raleway', sans-serif;
   font-size: 16px;
   font-weight: 600;
@@ -38,17 +37,20 @@ html {
 *:after {
   padding: 0;
   margin: 0;
-  border: 1px solid black;
   box-sizing: inherit;
 }
 
-/* General Rules */
 .nav,
 .header,
 .lodging,
 .activities,
 .footer {
-    padding: 0 max(var(--padding-page), (100vw - 1340px) / 2);
+  padding: 0 max(var(--padding-page), (100vw - 1340px) / 2);
+}
+
+input, input:focus, textarea:focus, select:focus{
+  outline: none;
+  border: 0;
 }
 
 h1, h2 {
@@ -60,6 +62,18 @@ h3, button, input, label span {
   font-size: 1.125em;
   font-weight: 700;
 }
+
+a {
+  text-decoration: none;
+  font-weight: 500;
+  color: black;
+}
+
+.card, .lodging-main__more, label, button {
+  cursor: pointer;
+}
+
+/* Règles globales pour les cartes */
 
 .card {
   display: flex;
@@ -83,23 +97,19 @@ h3, button, input, label span {
 .card__info {
   font-size: 0.875em;
   font-weight: 400;
+  margin-top: 5px;
 }
 
 .card__rating {
   display: inline-flex;
   list-style: none;
   margin-top: auto;
+  padding-top: 10px;
 }
 
 i.fas--card {
   font-size: 0.7em;
   color: var(--color-primary);
-}
-
-
-/* A supprimer pour prod */
-source {
-  display: none;
 }
 
 /* Override des règles Font Awesome injecté via le script js */
@@ -121,17 +131,27 @@ i.fas {
   grid-template-columns: 1fr repeat(2, 162px) 111px;
 }
 
-.menu__item {
+.menu__item, .menu__logo {
   display: flex;
   align-items: center;
 }
 
-.menu__item[class*=link] {
+.menu__item:nth-of-type(-n+4) {
   justify-content: center;
 }
 
-.menu__item a {
-  text-decoration: none;
+.menu__item a:hover {
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.menu__item:nth-of-type(-n+3):hover {
+  box-shadow: inset 0 5px var(--color-primary);
+}
+
+.menu__item:last-child a {
+  font-weight: 700;
+  color: var(--color-primary);
 }
 
 /* 2. Header ---------------------------------------------------------------- */
@@ -169,6 +189,9 @@ i.fas--searchbar-marker {
 .searchbar__item--input {
   padding-left: 18px;
   width: 100%;
+  box-shadow:
+    inset 0 2px var(--color-background),
+    inset 0 -2px var(--color-background)
 }
 
 .searchbar__item--label {
@@ -204,6 +227,8 @@ i.fas--searchbar-search {
   margin: 0 20px 20px 0;
   padding-right: 20px;
   border-radius: 30px;
+  border: none;
+  background: none;
   display: flex;
   align-items: center;
   box-shadow: inset 0 0 0 2px var(--color-border);
@@ -220,8 +245,6 @@ i.fas--searchbar-search {
 }
 
 .header__info {
-  min-height: 50px;
-  margin: 0 0 30px 0;
   display: flex;
 }
 
@@ -231,7 +254,7 @@ i.fas--info {
   margin: 0 10px 0 0;
   border-radius: 50%;
   color: var(--color-primary);
-  border: 1px solid var(--color-background);
+  border: 1px solid var(--color-border);
   font-size: 0.825em;
 }
 
@@ -247,26 +270,28 @@ i.fas--info {
   min-height: 626px;
   display: grid;
   grid-template-columns: 3fr 1fr;
-  grid-template-rows: 1fr;
+  grid-template-areas: "main popular";
   gap: 40px;
 }
 
   /* 3.1 Aside Hébergements Populaires -------------------------------------- */
 .lodging-popular {
   background-color: var(--color-background);
-  grid-column: 2;
+  grid-area: popular;
   border-radius: 25px;
   padding: 40px;
 }
 
 .lodging-popular__title {
   margin-bottom: 17px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .lodging-popular__container {
   display: grid;
-  gap: 25px;
-  grid-template-columns: repeat(auto-fit, minmax(343px, 1fr));
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(144px, 1fr));
 }
 
@@ -276,7 +301,7 @@ i.fas--info {
 
 .card--lodging-popular .card__img {
   width: 127px;
-  height: 144px;
+  height: 134px;
   object-fit: cover;
 }
 
@@ -286,8 +311,7 @@ i.fas--info {
 
   /* 3.2 Div Hébergements Normaux ------------------------------------------- */
 .lodging-main {
-  grid-column: 1;
-  grid-row: 1;
+  grid-area: main;
   background-color: var(--color-background);
   border-radius: 25px;
   padding: 40px;
@@ -300,11 +324,10 @@ i.fas--info {
 }
 
 .lodging-main__container {
-  height: 100%;
   display: grid;
   gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(246px, 1fr));
-  grid-template-rows: repeat(auto-fit, 200px);
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .card--lodging-main {
@@ -319,11 +342,12 @@ i.fas--info {
 
 .card--lodging-main .card__text {
   flex: 1;
-  padding: 10px 10px 0 10px;
+  padding: 10px 10px 5px 10px;
 }
 
 .lodging-main__more {
-  margin: 40px 0 0 0;
+  margin-top: auto;
+  padding-top: 40px;
 }
 
 /* 4. Section Activités ----------------------------------------------------- */
@@ -331,6 +355,12 @@ i.fas--info {
   display: flex;
   flex-direction: column;
   min-height: 614px;
+  padding-top: 40px;
+  padding-bottom: 60px;
+}
+
+.activities__title {
+  margin: 20px 0;
 }
 
 .activities__container {
@@ -360,18 +390,23 @@ i.fas--info {
 .card--activities:nth-of-type(1) {
   grid-area: a;
 }
+
 .card--activities:nth-of-type(2) {
   grid-area: b;
 }
+
 .card--activities:nth-of-type(3) {
   grid-area: c;
 }
+
 .card--activities:nth-of-type(4) {
   grid-area: d;
 }
+
 .card--activities:nth-of-type(5) {
   grid-area: e;
 }
+
 .card--activities:nth-of-type(6) {
   grid-area: f;
 }
@@ -393,52 +428,119 @@ i.fas--info {
 /* 5. Footer ---------------------------------------------------------------- */
 .footer {
   min-height: 218px;
-  background-color: burlywood;
+  background-color: var(--color-background);
+  display:grid;
+  grid-template-areas: "about our-lodging assistance";
+  padding-top: 40px;
 }
 
+.footer__item:nth-of-type(1) {
+  grid-area: about;
+}
 
-/* Tablet Breakpoints & Rules ----------------------------------------------- */
+.footer__item:nth-of-type(2) {
+  grid-area: our-lodging;
+}
+
+.footer__item:nth-of-type(3) {
+  grid-area: assistance;
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer__title {
+  margin: 5px 0 20px 0;
+}
+
+.footer__link {
+  margin-bottom: 10px;
+}
+
+/* Règles Tablettes --------------------------------------------------------- */
 @media only screen and (max-width: 1200px){
-  /*Tablets [769px -> 1200px]*/
+  /* Tablettes [769px -> 1200px] */
 
+  /* Hébergement */
+  .lodging {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "popular"
+      "main"
+  }
+
+  .lodging-popular__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  }
+
+  /* Activités */
+  .activities__container {
+    display: grid;
+    grid-template-areas:
+      "a b c"
+      "a b c"
+      "a b c"
+      "a b c"
+      "a b c"
+      "a b c"
+      ". . ."
+      "d e f"
+      "d e f"
+      "d e f"
+      "d e f"
+      "d e f"
+      "d e f"
+  }
 }
 
-/* Mobile Breakpoint & Rules ------------------------------------------------ */
+/* Règles Mobiles ----------------------------------------------------------- */
 @media only screen and (max-width: 768px){
   /*Smartphones [0px -> 768px]*/
-
-  /* Nav Rules */
+  
+  /* Barre de Navigation */
   .nav {
     min-height: 132px;
     padding: 0;
   }
-
+  
   .menu {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 90px 48px;
   }
-
-  .menu__item--logo {
+  
+  .menu__logo {
     padding-left: var(--padding-page);
   }
-
-  .menu__item[class*=link-subscribe] {
+  
+  .menu__item:nth-of-type(4) {
     grid-row: 1;
     grid-column: 2;
-    justify-content: end;
+    justify-content: flex-end;
     padding-right: var(--padding-page);
   }
+  
+  .menu__item:nth-of-type(-n+3) {
+    box-shadow: inset 0 -5px var(--color-background);
+  }
 
-  /* Header Rules */
+  .menu__item:nth-of-type(-n+3):hover {
+    box-shadow: inset 0 -5px var(--color-primary);
+  }
+
+  /* Header */
   .searchbar {
     width: min(var(--searchbar-width), 100%);
     position: relative;
   }
-
+  
   .searchbar__item--input {
     border-radius: 0 30px 30px 0;
+    box-shadow: inset 0 0 0 2px var(--color-background);
   }
-
+  
   .searchbar__item--label {
     padding: 0 17px;
     border-radius: 15px;
@@ -447,7 +549,7 @@ i.fas--info {
     right: 0;
     height: 100%;
   }
-
+  
   .searchbar__item--label-text {
     display: none;
   }
@@ -456,13 +558,86 @@ i.fas--info {
     display: inline;
     color: #FFFFFF;
   }
-
+  
   .filter {
     flex-direction: column;
   }
-
+  
   .filter__title {
     margin: 0 0 20px 0;
   }
+  
+  /* Hébergement */
+  .lodging {
+    padding: 0;
+    gap: 0;
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr);
+  }
+  
+  .lodging-popular {
+    padding: 40px var(--padding-page);
+    border-radius: 0;
+  }
+  
+  .lodging-popular__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  
+  .lodging-main {
+    padding: 40px var(--padding-page);
+    background-color: white;
+  }
+  
+  .lodging-main__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 
+  /* Activités */
+  .activities {
+    padding-top: 0;
+  }
+
+  .activities__container {
+    display: grid;
+    grid-template-rows: repeat(3, 190px);
+    gap: 20px;
+    grid-auto-rows: 190px;
+    grid-template-areas:
+      "a b"
+      "c d"
+      "e f"
+  }
+
+  /* Footer */
+  .footer {
+    display: grid;
+    grid-template-areas:
+    "about"
+    "our-lodging"
+    "assistance"
+  }
+
+  .footer__item {
+    margin-bottom: 30px;
+  }
+}
+
+/* Fixe pour la fluidité de la partie Activités */
+@media only screen and (max-width: 460px){
+  .activities__container {
+    display: grid;
+    grid-template-rows: repeat(6, 190px);
+    gap: 20px;
+    grid-auto-rows: 190px;
+    grid-template-areas: 
+      "a"
+      "b"
+      "c"
+      "d"
+      "e"
+      "f"
+  }
 }
