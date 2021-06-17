@@ -22,6 +22,13 @@
   background-color: #FFFFFF;
 }
 
+/* Override des règles Font Awesome injecté via le script js */
+i.fas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Règles Générales */
 
 html {
@@ -53,14 +60,23 @@ input, input:focus, textarea:focus, select:focus{
   border: 0;
 }
 
+ul {
+  list-style: none;
+}
+
 h1, h2 {
   font-size: 1.375em;
   font-weight: 800;
 }
 
-h3, button, input, label span {
+h3, input, label span {
   font-size: 1.125em;
   font-weight: 700;
+}
+
+button {
+  font-size: 1em;
+  font-weight: 600;
 }
 
 a {
@@ -69,24 +85,40 @@ a {
   color: black;
 }
 
-.card, .lodging-main__more, label, button {
+.card, .lodging-main__more, .fas--searchbar-marker, label, button {
   cursor: pointer;
 }
 
 /* Règles globales pour les cartes */
 
 .card {
-  display: flex;
-  border-radius: 15px;
-  border: 5px solid white;
   background-color: white;
-  overflow: hidden;
+  border: 5px solid white;
+  border-radius: 15px;
   box-shadow: 0px 5px 15px var(--color-border);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.2s linear;
+}
+
+.card:hover {
+  box-shadow: 0px 10px 20px var(--color-border);
+  transform: scale(1.05);
+  z-index: 1;
 }
 
 .card__text {
   display: flex;
+  flex: 100%;
   flex-direction: column;
+  padding: 5px 0 0 10px;
+}
+
+.card img {
+  height: 114px;
+  object-fit: cover;
+  width: 100%;
 }
 
 .card__title {
@@ -100,11 +132,14 @@ a {
   margin-top: 5px;
 }
 
+.card__price {
+  font-weight: 700;
+}
+
 .card__rating {
   display: inline-flex;
-  list-style: none;
   margin-top: auto;
-  padding-top: 10px;
+  padding: 5px 0;
 }
 
 i.fas--card {
@@ -112,11 +147,8 @@ i.fas--card {
   color: var(--color-primary);
 }
 
-/* Override des règles Font Awesome injecté via le script js */
-i.fas {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+i.fas--none {
+  color: var(--color-border);
 }
 
 /* 1. Barre de Navigation --------------------------------------------------- */
@@ -126,7 +158,6 @@ i.fas {
 }
 
 .menu {
-  list-style: none;
   display: grid;
   grid-template-columns: 1fr repeat(2, 162px) 111px;
 }
@@ -152,12 +183,19 @@ i.fas {
 .menu__item:last-child a {
   font-weight: 700;
   color: var(--color-primary);
+  overflow: hidden;
+  transition: all 0.1s linear;
+}
+
+.menu__item:last-child a:hover {
+  transform: scale(1.05);
 }
 
 /* 2. Header ---------------------------------------------------------------- */
 .header {
   min-height: 310px;
   padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .header__title {
@@ -186,6 +224,10 @@ i.fas--searchbar-marker {
   font-size: 1.3em;
 }
 
+i.fas--searchbar-marker:hover {
+  color: var(--color-primary);
+}
+
 .searchbar__item--input {
   padding-left: 18px;
   width: 100%;
@@ -198,10 +240,12 @@ i.fas--searchbar-marker {
   padding: 0 17px;
   border-radius: 0 15px 15px 0;
   background-color: var(--color-primary);
+  color: #FFFFFF;
 }
 
-.searchbar__item--label-text {
-  color: #FFFFFF;
+.searchbar__item--label:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
 }
 
 i.fas--searchbar-search {
@@ -224,7 +268,7 @@ i.fas--searchbar-search {
 }
 
 .button--filter {
-  margin: 0 20px 20px 0;
+  margin: 0 15px 20px 0;
   padding-right: 20px;
   border-radius: 30px;
   border: none;
@@ -232,6 +276,15 @@ i.fas--searchbar-search {
   display: flex;
   align-items: center;
   box-shadow: inset 0 0 0 2px var(--color-border);
+  border: solid 1px white;
+  overflow: hidden;
+}
+
+.button--filter:hover {
+  box-shadow: inset 0 0 0 2px var(--color-secondary);
+  background-color: var(--color-secondary);
+  border: solid 1px var(--color-secondary);
+  color: var(--color-primary);
 }
 
 .fas--filter {
@@ -267,11 +320,11 @@ i.fas--info {
 
 /* 3. Section Hébergement --------------------------------------------------- */
 .lodging {
-  min-height: 626px;
   display: grid;
-  grid-template-columns: 3fr 1fr;
-  grid-template-areas: "main popular";
   gap: 40px;
+  grid-template-areas: "main popular";
+  grid-template-columns: 3fr 1fr;
+  min-height: 626px;
 }
 
   /* 3.1 Aside Hébergements Populaires -------------------------------------- */
@@ -283,7 +336,7 @@ i.fas--info {
 }
 
 .lodging-popular__title {
-  margin-bottom: 17px;
+  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
 }
@@ -292,21 +345,22 @@ i.fas--info {
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(144px, 1fr));
+  grid-template-rows: 144px;
+  grid-auto-rows: 144px;
 }
 
 .card--lodging-popular {
   flex-direction: row;
 }
 
-.card--lodging-popular .card__img {
-  width: 127px;
-  height: 134px;
+.card--lodging-popular img {
+  width: 132px;
+  height: 100%;
   object-fit: cover;
 }
 
 .card--lodging-popular .card__text {
-  padding: 15px 40px 10px 20px;
+  padding: 15px 30px 0 20px;
 }
 
   /* 3.2 Div Hébergements Normaux ------------------------------------------- */
@@ -320,7 +374,7 @@ i.fas--info {
 }
 
 .lodging-main__title {
-  margin-bottom: 17px;
+  margin-bottom: 20px;
 }
 
 .lodging-main__container {
@@ -328,21 +382,7 @@ i.fas--info {
   gap: 20px;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
-}
-
-.card--lodging-main {
-  flex-direction: column;
-}
-
-.card--lodging-main .card__img {
-  width: 100%;
-  height: 114px;
-  object-fit: cover;
-}
-
-.card--lodging-main .card__text {
-  flex: 1;
-  padding: 10px 10px 5px 10px;
+  grid-auto-rows: 1fr;
 }
 
 .lodging-main__more {
@@ -383,7 +423,6 @@ i.fas--info {
 }
 
 .card--activities {
-  flex-direction: column;
   border: 0;
 }
 
@@ -416,13 +455,16 @@ i.fas--info {
 }
 
 .card--activities .card__img {
+  height: 100%;
   object-fit: cover;
   width: 100%;
-  height: 100%;
 }
 
-.card--activities .card__title {
-  padding: 15px;
+.card--activities .card__text.card__title {
+  flex: 0;
+  height: 100%;
+  margin: auto 0;
+  padding: 0 10px;
 }
 
 /* 5. Footer ---------------------------------------------------------------- */
@@ -444,10 +486,6 @@ i.fas--info {
 
 .footer__item:nth-of-type(3) {
   grid-area: assistance;
-}
-
-.footer ul {
-  list-style: none;
 }
 
 .footer__title {
@@ -496,9 +534,9 @@ i.fas--info {
   }
 }
 
-/* Règles Mobiles ----------------------------------------------------------- */
+/* Règles Mobiles L ---------------------------------------------------------- */
 @media only screen and (max-width: 768px){
-  /*Smartphones [0px -> 768px]*/
+  /*Smartphones [461px -> 768px]*/
   
   /* Barre de Navigation */
   .nav {
@@ -549,6 +587,10 @@ i.fas--info {
     right: 0;
     height: 100%;
   }
+
+  .searchbar__item--label:hover {
+    color: var(--color-primary);
+  }
   
   .searchbar__item--label-text {
     display: none;
@@ -556,7 +598,6 @@ i.fas--info {
   
   i.fas--searchbar-search {
     display: inline;
-    color: #FFFFFF;
   }
   
   .filter {
@@ -565,6 +606,7 @@ i.fas--info {
   
   .filter__title {
     margin: 0 0 20px 0;
+    padding: 0;
   }
   
   /* Hébergement */
@@ -582,7 +624,7 @@ i.fas--info {
   
   .lodging-popular__container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
   
   .lodging-main {
@@ -613,11 +655,12 @@ i.fas--info {
 
   /* Footer */
   .footer {
+    text-align: center;
     display: grid;
     grid-template-areas:
-    "about"
-    "our-lodging"
-    "assistance"
+      "about"
+      "our-lodging"
+      "assistance"
   }
 
   .footer__item {
@@ -625,8 +668,22 @@ i.fas--info {
   }
 }
 
-/* Fixe pour la fluidité de la partie Activités */
+/* Règles Mobiles M ---------------------------------------------------------- */
 @media only screen and (max-width: 460px){
+  /*Smartphones [351px -> 460px]*/
+
+  /* Header */
+  .button--filter {
+    padding-right: 15px;
+    margin: 0 10px 15px 0;
+  }
+  
+  /* Hébergements */
+  .lodging-popular__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+  /* Activités */
   .activities__container {
     display: grid;
     grid-template-rows: repeat(6, 190px);
@@ -639,5 +696,43 @@ i.fas--info {
       "d"
       "e"
       "f"
+  }
+  /* Footer */
+  .footer {
+    text-align: left;
+  }
+}
+
+/* Règles Mobiles S ---------------------------------------------------------- */
+@media only screen and (max-width: 350px){
+  /*Smartphones [0px -> 350px]*/
+
+  /* Hébergements */
+  .lodging-main__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-rows: 1fr;
+  }
+  
+  .lodging-popular__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-auto-rows: 1fr;
+  }
+
+  .card--lodging-popular {
+    flex-direction: column;
+  }
+
+  .card--lodging-popular img {
+    width: 100%;
+    height: 114px;
+    object-fit: cover;
+  }
+  
+  .card--lodging-popular .card__text {
+    padding: 5px 0 0 10px;
   }
 }
