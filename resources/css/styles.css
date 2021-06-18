@@ -1,28 +1,33 @@
 /* Variables globales */
 
 :root {
-  --padding-page: calc(20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065));
+  --padding-page: calc(
+    20 * (1px - ((100vw - 375px) / 1065)) + 50 * ((100vw - 375px) / 1065)
+  );
   /* Obtenir des marges fluides par interpolation entre 2 intervalles connus, exemple:
   /* Intervalle 1: selon la largeur des maquettes - 375px, 1440px
   /* Intervalle 2: le padding gauche & droit de la page - 20px, 50px
   /* 1065 correspond à 1440-375 */
 
-  --searchbar-width: calc(335 * (1px - ((100vw - 375px) / 1065)) + 420 * ((100vw - 375px) / 1065));
+  --searchbar-width: calc(
+    335 * (1px - ((100vw - 375px) / 1065)) + 420 * ((100vw - 375px) / 1065)
+  );
   /* Pour un élément comme la searchbar on sait également que sa width est
   /* de 100% en mode mobile. Aussi dans le @media mobile on pourra ajouter:
   /* width: min(var(--searchbar-width), 100%);
   /* Ainsi lorsque --searchbar-width est plus grand que 100% de la width de son parent
   /* min() sélectionnera la valeur 100% ce qui évitera un overflow. */
 
-  --color-primary: #0065FC;
-  --color-secondary: #DEEBFF;
-  --color-background: #F2F2F2;
+  --color-primary: #0065fc;
+  --color-secondary: #deebff;
+  --color-background: #f2f2f2;
   --color-border: #d9d9d9;
-  color: #000000;
-  background-color: #FFFFFF;
+  background-color: #fff;
+  color: #000;
 }
 
 /* Override des règles Font Awesome injecté via le script js */
+
 i.fas {
   display: flex;
   align-items: center;
@@ -33,18 +38,55 @@ i.fas {
 
 html {
   box-sizing: border-box;
-  font-family: 'Raleway', sans-serif;
+  color: #000000;
+  font-family: "Raleway", sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: #000000;
+  scroll-behavior: smooth;
 }
 
 *,
 *:before,
 *:after {
+  box-sizing: inherit;
   padding: 0;
   margin: 0;
-  box-sizing: inherit;
+}
+
+h1,
+h2 {
+  font-size: 1.375em;
+  font-weight: 800;
+}
+
+h3,
+input,
+label span {
+  font-size: 1.125em;
+  font-weight: 700;
+}
+
+a {
+  color: black;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+button {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+input,
+input:focus,
+textarea:focus,
+select:focus {
+  border: 0;
+  outline: none;
+}
+
+ul {
+  list-style: none;
 }
 
 .nav,
@@ -55,57 +97,37 @@ html {
   padding: 0 max(var(--padding-page), (100vw - 1340px) / 2);
 }
 
-input, input:focus, textarea:focus, select:focus{
-  outline: none;
-  border: 0;
-}
-
-ul {
-  list-style: none;
-}
-
-h1, h2 {
-  font-size: 1.375em;
-  font-weight: 800;
-}
-
-h3, input, label span {
-  font-size: 1.125em;
-  font-weight: 700;
-}
-
+.card,
+.lodging-main__more,
+.fas--searchbar-marker,
+label,
 button {
-  font-size: 1em;
-  font-weight: 600;
-}
-
-a {
-  text-decoration: none;
-  font-weight: 500;
-  color: black;
-}
-
-.card, .lodging-main__more, .fas--searchbar-marker, label, button {
   cursor: pointer;
 }
 
 /* Règles globales pour les cartes */
 
 .card {
-  background-color: white;
+  display: flex;
+  overflow: hidden;
+  flex-direction: column;
   border: 5px solid white;
+  background-color: white;
   border-radius: 15px;
   box-shadow: 0px 5px 15px var(--color-border);
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
   transition: all 0.2s linear;
 }
 
 .card:hover {
+  z-index: 1;
   box-shadow: 0px 10px 20px var(--color-border);
   transform: scale(1.05);
-  z-index: 1;
+}
+
+.card img {
+  width: 100%;
+  height: 114px;
+  object-fit: cover;
 }
 
 .card__text {
@@ -115,21 +137,15 @@ a {
   padding: 5px 0 0 10px;
 }
 
-.card img {
-  height: 114px;
-  object-fit: cover;
-  width: 100%;
-}
-
 .card__title {
   font-size: 1em;
   font-weight: 700;
 }
 
 .card__info {
+  margin-top: 5px;
   font-size: 0.875em;
   font-weight: 400;
-  margin-top: 5px;
 }
 
 .card__price {
@@ -138,13 +154,13 @@ a {
 
 .card__rating {
   display: inline-flex;
-  margin-top: auto;
   padding: 5px 0;
+  margin-top: auto;
 }
 
 i.fas--card {
-  font-size: 0.7em;
   color: var(--color-primary);
+  font-size: 0.7em;
 }
 
 i.fas--none {
@@ -153,8 +169,8 @@ i.fas--none {
 
 /* 1. Barre de Navigation --------------------------------------------------- */
 .nav {
-  min-height: 116px;
   display: grid;
+  min-height: 100px;
 }
 
 .menu {
@@ -162,12 +178,13 @@ i.fas--none {
   grid-template-columns: 1fr repeat(2, 162px) 111px;
 }
 
-.menu__item, .menu__logo {
+.menu__item,
+.menu__logo {
   display: flex;
   align-items: center;
 }
 
-.menu__item:nth-of-type(-n+4) {
+.menu__item:nth-of-type(-n + 4) {
   justify-content: center;
 }
 
@@ -176,14 +193,17 @@ i.fas--none {
   font-weight: 600;
 }
 
-.menu__item:nth-of-type(-n+3):hover {
+/* Utilisation de box-shadow inset plutôt
+/* que border. Permet d'éviter un changement
+/* de height de l'élément */
+.menu__item:nth-of-type(-n + 3):hover {
   box-shadow: inset 0 5px var(--color-primary);
 }
 
 .menu__item:last-child a {
-  font-weight: 700;
-  color: var(--color-primary);
   overflow: hidden;
+  color: var(--color-primary);
+  font-weight: 700;
   transition: all 0.1s linear;
 }
 
@@ -193,9 +213,7 @@ i.fas--none {
 
 /* 2. Header ---------------------------------------------------------------- */
 .header {
-  min-height: 310px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  margin: 20px 0 30px 0;
 }
 
 .header__title {
@@ -203,13 +221,13 @@ i.fas--none {
 }
 
 .header__subtitle {
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .searchbar {
-  min-height: 51px;
   display: flex;
   width: var(--searchbar-width);
+  min-height: 51px;
 }
 
 .searchbar__item {
@@ -219,8 +237,8 @@ i.fas--none {
 
 i.fas--searchbar-marker {
   padding: 0 20px;
-  border-radius: 15px 0 0 15px;
   background-color: var(--color-background);
+  border-radius: 15px 0 0 15px;
   font-size: 1.3em;
 }
 
@@ -229,18 +247,17 @@ i.fas--searchbar-marker:hover {
 }
 
 .searchbar__item--input {
-  padding-left: 18px;
   width: 100%;
-  box-shadow:
-    inset 0 2px var(--color-background),
-    inset 0 -2px var(--color-background)
+  padding-left: 18px;
+  box-shadow: inset 0 2px var(--color-background),
+    inset 0 -2px var(--color-background);
 }
 
 .searchbar__item--label {
   padding: 0 17px;
-  border-radius: 0 15px 15px 0;
   background-color: var(--color-primary);
-  color: #FFFFFF;
+  border-radius: 0 15px 15px 0;
+  color: #ffffff;
 }
 
 .searchbar__item--label:hover {
@@ -253,8 +270,8 @@ i.fas--searchbar-search {
 }
 
 .filter {
-  margin: 30px 0 5px 0;
   display: flex;
+  margin: 30px 0 5px 0;
 }
 
 .filter__title {
@@ -262,28 +279,27 @@ i.fas--searchbar-search {
 }
 
 .filter__wrapper {
-  width: 100%;
   display: flex;
+  width: 100%;
   flex-wrap: wrap;
 }
 
 .button--filter {
-  margin: 0 15px 20px 0;
-  padding-right: 20px;
-  border-radius: 30px;
-  border: none;
-  background: none;
   display: flex;
-  align-items: center;
-  box-shadow: inset 0 0 0 2px var(--color-border);
-  border: solid 1px white;
   overflow: hidden;
+  align-items: center;
+  padding-right: 20px;
+  border: solid 1px white;
+  margin: 0 15px 20px 0;
+  background: none;
+  border-radius: 30px;
+  box-shadow: inset 0 0 0 2px var(--color-border);
 }
 
 .button--filter:hover {
-  box-shadow: inset 0 0 0 2px var(--color-secondary);
-  background-color: var(--color-secondary);
   border: solid 1px var(--color-secondary);
+  background-color: var(--color-secondary);
+  box-shadow: inset 0 0 0 2px var(--color-secondary);
   color: var(--color-primary);
 }
 
@@ -291,10 +307,10 @@ i.fas--searchbar-search {
   width: 50px;
   height: 50px;
   margin-right: 10px;
-  color: var(--color-primary);
   background-color: var(--color-secondary);
-  box-shadow: 0 0 0 1px var(--color-secondary);
   border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--color-secondary);
+  color: var(--color-primary);
 }
 
 .header__info {
@@ -302,51 +318,51 @@ i.fas--searchbar-search {
 }
 
 i.fas--info {
-  height: 23px;
   min-width: 23px;
+  height: 23px;
+  border: 1px solid var(--color-border);
   margin: 0 10px 0 0;
   border-radius: 50%;
   color: var(--color-primary);
-  border: 1px solid var(--color-border);
   font-size: 0.825em;
 }
 
 .header__info-text {
   display: flex;
   flex-direction: column;
-  line-height: 1.125em;
   margin: 3px 0 0 0;
+  line-height: 1.125em;
 }
 
 /* 3. Section Hébergement --------------------------------------------------- */
 .lodging {
   display: grid;
+  min-height: 626px;
   gap: 40px;
   grid-template-areas: "main popular";
   grid-template-columns: 3fr 1fr;
-  min-height: 626px;
 }
 
-  /* 3.1 Aside Hébergements Populaires -------------------------------------- */
+/* 3.1 Aside Hébergements Populaires -------------------------------------- */
 .lodging-popular {
-  background-color: var(--color-background);
-  grid-area: popular;
-  border-radius: 25px;
   padding: 40px;
+  background-color: var(--color-background);
+  border-radius: 25px;
+  grid-area: popular;
 }
 
 .lodging-popular__title {
-  margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .lodging-popular__container {
   display: grid;
   gap: 20px;
+  grid-auto-rows: 144px;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
   grid-template-rows: 144px;
-  grid-auto-rows: 144px;
 }
 
 .card--lodging-popular {
@@ -363,14 +379,14 @@ i.fas--info {
   padding: 15px 30px 0 20px;
 }
 
-  /* 3.2 Div Hébergements Normaux ------------------------------------------- */
+/* 3.2 Div Hébergements Normaux ------------------------------------------- */
 .lodging-main {
-  grid-area: main;
-  background-color: var(--color-background);
-  border-radius: 25px;
-  padding: 40px;
   display: flex;
   flex-direction: column;
+  padding: 40px;
+  background-color: var(--color-background);
+  border-radius: 25px;
+  grid-area: main;
 }
 
 .lodging-main__title {
@@ -380,21 +396,21 @@ i.fas--info {
 .lodging-main__container {
   display: grid;
   gap: 20px;
+  grid-auto-rows: 1fr;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
-  grid-auto-rows: 1fr;
 }
 
 .lodging-main__more {
-  margin-top: auto;
   padding-top: 40px;
+  margin-top: auto;
 }
 
 /* 4. Section Activités ----------------------------------------------------- */
 .activities {
   display: flex;
-  flex-direction: column;
   min-height: 614px;
+  flex-direction: column;
   padding-top: 40px;
   padding-bottom: 60px;
 }
@@ -406,8 +422,6 @@ i.fas--info {
 .activities__container {
   display: grid;
   gap: 0 40px;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  grid-template-rows: repeat(11, 40px);
   grid-template-areas:
     "a b d e"
     "a b d e"
@@ -419,7 +433,9 @@ i.fas--info {
     "a c d f"
     "a c d f"
     "a c d f"
-    "a c d f"
+    "a c d f";
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-rows: repeat(11, 40px);
 }
 
 .card--activities {
@@ -454,26 +470,26 @@ i.fas--info {
   height: calc(100% - 56px);
 }
 
-.card--activities .card__img {
+.card--activities img {
+  width: 100%;
   height: 100%;
   object-fit: cover;
-  width: 100%;
 }
 
 .card--activities .card__text.card__title {
-  flex: 0;
   height: 100%;
-  margin: auto 0;
+  flex: 0;
   padding: 0 10px;
+  margin: auto 0;
 }
 
 /* 5. Footer ---------------------------------------------------------------- */
 .footer {
+  display: grid;
   min-height: 218px;
-  background-color: var(--color-background);
-  display:grid;
-  grid-template-areas: "about our-lodging assistance";
   padding-top: 40px;
+  background-color: var(--color-background);
+  grid-template-areas: "about our-lodging assistance";
 }
 
 .footer__item:nth-of-type(1) {
@@ -488,25 +504,25 @@ i.fas--info {
   grid-area: assistance;
 }
 
-.footer__title {
-  margin: 5px 0 20px 0;
+.footer h3 {
+  margin-bottom: 20px;
 }
 
-.footer__link {
+.footer li {
   margin-bottom: 10px;
 }
 
 /* Règles Tablettes --------------------------------------------------------- */
-@media only screen and (max-width: 1200px){
+@media only screen and (max-width: 1200px) {
   /* Tablettes [769px -> 1200px] */
 
   /* Hébergement */
   .lodging {
     display: grid;
-    grid-template-columns: 1fr;
     grid-template-areas:
       "popular"
-      "main"
+      "main";
+    grid-template-columns: 1fr;
   }
 
   .lodging-popular__container {
@@ -530,108 +546,117 @@ i.fas--info {
       "d e f"
       "d e f"
       "d e f"
-      "d e f"
+      "d e f";
   }
 }
 
 /* Règles Mobiles L ---------------------------------------------------------- */
-@media only screen and (max-width: 768px){
+@media only screen and (max-width: 768px) {
   /*Smartphones [461px -> 768px]*/
-  
-  /* Barre de Navigation */
+
+  /* Barre de Navigation, Reset du padding global
+  /* pour l'appliquer aux enfants au cas par cas
+  /* selon leur disposition dans la grille réarrangée */
   .nav {
     min-height: 132px;
     padding: 0;
   }
-  
+
   .menu {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 90px 48px;
   }
-  
+
   .menu__logo {
     padding-left: var(--padding-page);
   }
-  
+
+  /* Changement de l'ordre du subscribe dans la grille */
   .menu__item:nth-of-type(4) {
-    grid-row: 1;
-    grid-column: 2;
     justify-content: flex-end;
     padding-right: var(--padding-page);
+    grid-column: 2;
+    grid-row: 1;
   }
-  
-  .menu__item:nth-of-type(-n+3) {
+
+  /* Les liens affichent désormais
+  /* un inset box-shadow en bas */
+  .menu__item:nth-of-type(-n + 3) {
     box-shadow: inset 0 -5px var(--color-background);
   }
 
-  .menu__item:nth-of-type(-n+3):hover {
+  .menu__item:nth-of-type(-n + 3):hover {
     box-shadow: inset 0 -5px var(--color-primary);
   }
 
   /* Header */
-  .searchbar {
-    width: min(var(--searchbar-width), 100%);
-    position: relative;
+  .header {
+    margin-top: 30px;
   }
-  
+
+  .searchbar {
+    position: relative;
+    width: min(var(--searchbar-width), 100%);
+  }
+
   .searchbar__item--input {
     border-radius: 0 30px 30px 0;
     box-shadow: inset 0 0 0 2px var(--color-background);
   }
-  
+
   .searchbar__item--label {
-    padding: 0 17px;
-    border-radius: 15px;
-    background-color: var(--color-primary);
     position: absolute;
     right: 0;
     height: 100%;
+    padding: 0 17px;
+    background-color: var(--color-primary);
+    border-radius: 15px;
   }
 
   .searchbar__item--label:hover {
     color: var(--color-primary);
   }
-  
+
   .searchbar__item--label-text {
     display: none;
   }
-  
+
   i.fas--searchbar-search {
     display: inline;
   }
-  
+
   .filter {
     flex-direction: column;
   }
-  
+
   .filter__title {
-    margin: 0 0 20px 0;
     padding: 0;
+    margin: 0 0 20px 0;
   }
-  
+
   /* Hébergement */
   .lodging {
+    display: grid;
     padding: 0;
     gap: 0;
-    display: grid;
     grid-template-columns: minmax(200px, 1fr);
   }
-  
+
   .lodging-popular {
     padding: 40px var(--padding-page);
     border-radius: 0;
   }
-  
+
   .lodging-popular__container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
-  
+
   .lodging-main {
     padding: 40px var(--padding-page);
     background-color: white;
   }
-  
+
   .lodging-main__container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -644,23 +669,23 @@ i.fas--info {
 
   .activities__container {
     display: grid;
-    grid-template-rows: repeat(3, 190px);
     gap: 20px;
     grid-auto-rows: 190px;
     grid-template-areas:
       "a b"
       "c d"
-      "e f"
+      "e f";
+    grid-template-rows: repeat(3, 190px);
   }
 
   /* Footer */
   .footer {
-    text-align: center;
     display: grid;
     grid-template-areas:
       "about"
       "our-lodging"
-      "assistance"
+      "assistance";
+    text-align: center;
   }
 
   .footer__item {
@@ -669,7 +694,7 @@ i.fas--info {
 }
 
 /* Règles Mobiles M ---------------------------------------------------------- */
-@media only screen and (max-width: 460px){
+@media only screen and (max-width: 460px) {
   /*Smartphones [351px -> 460px]*/
 
   /* Header */
@@ -677,26 +702,28 @@ i.fas--info {
     padding-right: 15px;
     margin: 0 10px 15px 0;
   }
-  
+
   /* Hébergements */
   .lodging-popular__container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
+
   /* Activités */
   .activities__container {
     display: grid;
-    grid-template-rows: repeat(6, 190px);
     gap: 20px;
     grid-auto-rows: 190px;
-    grid-template-areas: 
+    grid-template-areas:
       "a"
       "b"
       "c"
       "d"
       "e"
-      "f"
+      "f";
+    grid-template-rows: repeat(6, 190px);
   }
+
   /* Footer */
   .footer {
     text-align: left;
@@ -704,23 +731,26 @@ i.fas--info {
 }
 
 /* Règles Mobiles S ---------------------------------------------------------- */
-@media only screen and (max-width: 350px){
+@media only screen and (max-width: 350px) {
   /*Smartphones [0px -> 350px]*/
 
   /* Hébergements */
   .lodging-main__container {
     display: grid;
+    grid-auto-rows: 1fr;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    grid-auto-rows: 1fr;
   }
-  
+
   .lodging-popular__container {
     display: grid;
+    grid-auto-rows: 1fr;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
-    grid-auto-rows: 1fr;
   }
+
+  /* Changement de l'aspect des cartes populaires en carte normale
+  /* Ce qui évite un overflow du texte */
 
   .card--lodging-popular {
     flex-direction: column;
@@ -731,7 +761,7 @@ i.fas--info {
     height: 114px;
     object-fit: cover;
   }
-  
+
   .card--lodging-popular .card__text {
     padding: 5px 0 0 10px;
   }

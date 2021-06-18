@@ -22,7 +22,7 @@
       Reservia - Trouvez votre hébergement pour des vacances de rêve
     </title>
   </head>
-  <body class="page">
+  <body>
     <!-- Navigation -->
 
     <nav class="nav">
@@ -86,13 +86,10 @@
     </header>
 
     <main>
-
       <!-- Hébergements -->
 
       <div class="lodging" id="lodging">
-
         <!-- Populaire -->
-
         <aside class="lodging-popular">
           <h2 class="lodging-popular__title">
             Les plus populaires <i class="fas fa-chart-line"></i>
@@ -104,7 +101,6 @@
                   srcset="./resources/images/hebergements/emile-guillemot.jpg"
                 />
                 <img
-                  class="card__img"
                   src="./resources/images/hebergements/emile-guillemot.webp"
                   alt="Photo de chambre d'hôtel"
                 />
@@ -129,7 +125,6 @@
                   srcset="./resources/images/hebergements/aw-creative.jpg"
                 />
                 <img
-                  class="card__img"
                   src="./resources/images/hebergements/aw-creative.webp"
                   alt="Photo de chambre d'hôtel"
                 />
@@ -156,7 +151,6 @@
                   "
                 />
                 <img
-                  class="card__img"
                   src="./resources/images/hebergements/febrian-zakaria_02.webp"
                   alt="Photo de chambre d'hôtel"
                 />
@@ -179,7 +173,6 @@
         </aside>
 
         <!-- Principaux -->
-
         <div class="lodging-main">
           <h2 class="lodging-main__title">Hébergements à Marseille</h2>
           <div class="lodging-main__container">
@@ -189,7 +182,6 @@
                   srcset="./resources/images/hebergements/marcus-loke.jpg"
                 />
                 <img
-                  class="card__img"
                   src="./resources/images/hebergements/marcus-loke.webp"
                   alt="Photo de chambre d'hôtel"
                 />
@@ -214,7 +206,6 @@
                   srcset="./resources/images/hebergements/fred-kleber.jpg"
                 />
                 <img
-                  class="card__img"
                   src="./resources/images/hebergements/fred-kleber.webp"
                   alt="Photo de chambre d'hôtel"
                 />
@@ -239,7 +230,6 @@
                   srcset="./resources/images/hebergements/reisetopia.jpg"
                 />
                 <img
-                  class="card__img"
                   src="./resources/images/hebergements/reisetopia.webp"
                   alt="Photo de chambre d'hôtel"
                 />
@@ -264,7 +254,6 @@
                   srcset="./resources/images/hebergements/annie-spratt.jpg"
                 />
                 <img
-                  class="card__img"
                   src="./resources/images/hebergements/annie-spratt.webp"
                   alt="Photo de chambre d'hôtel"
                 />
@@ -289,7 +278,6 @@
                   srcset="./resources/images/hebergements/nicate-lee.jpg"
                 />
                 <img
-                  class="card__img"
                   src="./resources/images/hebergements/nicate-lee.webp"
                   alt="Photo de chambre d'hôtel"
                 />
@@ -314,7 +302,6 @@
                   srcset="./resources/images/hebergements/febrian-zakaria.jpg"
                 />
                 <img
-                  class="card__img"
                   src="./resources/images/hebergements/febrian-zakaria.webp"
                   alt="Photo de chambre d'hôtel"
                 />
@@ -349,7 +336,6 @@
                 srcset="./resources/images/activites/reno-laithienne.jpg"
               />
               <img
-                class="card__img"
                 src="./resources/images/activites/reno-laithienne.jpg"
                 alt="Photo de chambre d'hôtel"
               />
@@ -360,7 +346,6 @@
             <picture class="card__img-wrapper">
               <source srcset="./resources/images/activites/paul-hermann.jpg" />
               <img
-                class="card__img"
                 src="./resources/images/activites/paul-hermann.jpg"
                 alt="Photo du Fort de Pomègues"
               />
@@ -371,7 +356,6 @@
             <picture class="card__img-wrapper">
               <source srcset="./resources/images/activites/kevin-hikari.jpg" />
               <img
-                class="card__img"
                 src="./resources/images/activites/kevin-hikari.jpg"
                 alt="Photo des Îles du Frioul"
               />
@@ -384,7 +368,6 @@
                 srcset="./resources/images/activites/kilyan-sockalingum.jpg"
               />
               <img
-                class="card__img"
                 src="./resources/images/activites/kilyan-sockalingum.jpg"
                 alt="Photo du Par National des Calanques"
               />
@@ -393,11 +376,8 @@
           </div>
           <div class="card card--activities">
             <picture class="card__img-wrapper">
-              <source
-                srcset="./resources/images/activites/florian-wehde.jpg"
-              />
+              <source srcset="./resources/images/activites/florian-wehde.jpg" />
               <img
-                class="card__img"
                 src="./resources/images/activites/florian-wehde.jpg"
                 alt="Photo de Notre-Dame-de-la-Garde"
               />
@@ -408,7 +388,6 @@
             <picture class="card__img-wrapper">
               <source srcset="./resources/images/activites/lena-paulin.jpg" />
               <img
-                class="card__img"
                 src="./resources/images/activites/lena-paulin.jpg"
                 alt="Photo du Parc de Longchamp"
               />
@@ -418,33 +397,34 @@
         </div>
       </section>
     </main>
+
     <!-- Footer -->
 
     <footer class="footer">
       <div class="footer__item">
-        <h3 class="footer__title">À propos</h3>
+        <h3>À propos</h3>
         <ul>
-          <li class="footer__link"><a href="#">Fonctionnement du site</a></li>
-          <li class="footer__link">
+          <li><a href="#">Fonctionnement du site</a></li>
+          <li>
             <a href="#">Conditions générales de vente</a>
           </li>
-          <li class="footer__link">
+          <li>
             <a href="#">Données et confidentialité</a>
           </li>
         </ul>
       </div>
       <div class="footer__item">
-        <h3 class="footer__title">Nos Hébergements</h3>
+        <h3>Nos Hébergements</h3>
         <ul>
-          <li class="footer__link"><a href="#">Charte qualité</a></li>
-          <li class="footer__link"><a href="#">Soumettre votre hôtel</a></li>
+          <li><a href="#">Charte qualité</a></li>
+          <li><a href="#">Soumettre votre hôtel</a></li>
         </ul>
       </div>
       <div class="footer__item">
-        <h3 class="footer__title">Assistance</h3>
+        <h3>Assistance</h3>
         <ul>
-          <li class="footer__link"><a href="#">Centre d'aide</a></li>
-          <li class="footer__link"><a href="#">Nous contacter</a></li>
+          <li><a href="#">Centre d'aide</a></li>
+          <li><a href="#">Nous contacter</a></li>
         </ul>
       </div>
     </footer>

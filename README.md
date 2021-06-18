@@ -1,2 +1,3 @@
-# reservia
-Un exercice d'intégration de contenu conformément à une maquette où une interface responsive est implémentée.
+# Reservia
+
+Un exercice d'intégration de contenu conformément à une maquette, dans lequel une interface responsive est implémentée.
