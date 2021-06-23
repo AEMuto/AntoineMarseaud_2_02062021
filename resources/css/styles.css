@@ -16,7 +16,7 @@
   /* de 100% en mode mobile. Aussi dans le @media mobile on pourra ajouter:
   /* width: min(var(--searchbar-width), 100%);
   /* Ainsi lorsque --searchbar-width est plus grand que 100% de la width de son parent
-  /* min() sélectionnera la valeur 100% ce qui évitera un overflow. */
+  /* min() sélectionnera la valeur 100% ce qui évitera un overflow en dessous d'un viewport d'une width de 335 */
 
   --color-primary: #0065fc;
   --color-secondary: #deebff;
